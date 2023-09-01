@@ -31,7 +31,7 @@ class VocaDB:
             raise SongNotFoundError("Song not found.")
 
         return Song(
-            artist=data["artistString"],
+            artist=data["artistString"].split(" feat.", 2)[0],
             title=data["name"],
             year=int(data["publishDate"][:4]) if data["publishDate"] else None,
         )
