@@ -12,7 +12,7 @@ Tool for tagging and renaming Vocaloid songs downloaded from YouTube.
 ```sh
 yt-dlp -x -f bestaudio https://www.youtube.com/watch\?v\=uKbRXeJ9lv4
 mkdir mp3
-for f in *opus; do ffmpeg -i $f -codec:a libmp3lame -b:v 320 mp3/$f.mp3; done
+for f in *opus; do ffmpeg -i $f -ab 320k mp3/$f.mp3; done
 /path/to/vocaloid-tag/vocaloid-tag.py ./mp3 /path/to/destination
 ```
 
