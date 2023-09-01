@@ -7,6 +7,7 @@ import re
 from os import listdir, path
 from shutil import copy
 from sys import argv
+from tqdm import tqdm
 
 YT_DLP_EXP = re.compile(r".*\[(?P<yt_id>[a-zA-Z0-9-_]{11})\].*.mp3")
 
@@ -31,17 +32,17 @@ def nice_filename(song: Song) -> str:
 
 
 def tag_dir(song_dir: str, target_dir: str, lang: str):
-    for f in listdir(song_dir):
-        if f.endswith(".mp3"):
-            song_path = path.join(song_dir, f)
-            try:
-                song = tag_yt_song(song_path, lang)
-                copy(song_path, path.join(target_dir, nice_filename(song)))
-            except SongNotFoundError as e:
-                print(f"Could not find song for {f}: '{e}'")
-            except Exception as e:
-                print(f"An unexpected error occured finding data for {f}:")
-                print(e)
+    files = [f for f in listdir(song_dir) if f.endswith(".mp3")]
+    for f in tqdm(files):
+        song_path = path.join(song_dir, f)
+        try:
+            song = tag_yt_song(song_path, lang)
+            copy(song_path, path.join(target_dir, nice_filename(song)))
+        except SongNotFoundError as e:
+            print(f"Could not find song for {f}: '{e}'")
+        except Exception as e:
+            print(f"An unexpected error occured finding data for {f}:")
+            print(e)
 
 
 def main():
