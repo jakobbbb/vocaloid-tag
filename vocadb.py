@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 class VocaDB:
     @staticmethod
     def __query(endpoint, params):
-        headers = {"User-Agent": "vocaloid-tag (contact: github.com/jakobbbb)"}
+        headers = {"User-Agent": "github.com/jakobbbb/vocaloid-tag"}
         base = "https://vocadb.net/api/"
         url = urljoin(base, endpoint)
         return requests.get(url, params=params, headers=headers)

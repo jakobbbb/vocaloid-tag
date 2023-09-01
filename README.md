@@ -4,6 +4,11 @@ Tool for tagging and renaming Vocaloid songs downloaded from YouTube.
 
 ## usage
 
+```
+./vocaloid-tag.py <directory with downloaded mp3s> <target dir> [language (Default, Japanese, Romaji, English)]
+```
+
+### full example
 ```sh
 yt-dlp -x -f bestaudio https://www.youtube.com/watch\?v\=uKbRXeJ9lv4
 mkdir mp3
@@ -12,6 +17,8 @@ for f in *opus; do ffmpeg -i $f -codec:a libmp3lame -b:v 320 mp3/$f.mp3; done
 ```
 
 The output filename will be: `きくお feat. 绮萱 - イイコと妖狐.mp3`
+
+### language
 
 You can specify the langauge like this:
 
@@ -26,4 +33,4 @@ You can specify the langauge like this:
 /path/to/vocaloid-tag/vocaloid-tag.py ./mp3 /path/to/destination Romaji
 ```
 
-By default, we'll use whatever vocadb defaults to.
+By default, it uses whatever vocadb defaults to.

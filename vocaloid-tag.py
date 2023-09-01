@@ -53,8 +53,8 @@ def main():
         )
     else:
         print(
-            f"usage: ./{argv[0]} <directory with downloaded mp3s> "
-            "<target dir> [optional: language (Default, Japanese, Romaji, English)]"
+            f"usage: {argv[0]} <directory with downloaded mp3s> "
+            "<target dir> [language (Default, Japanese, Romaji, English)]"
         )
 
 
