@@ -12,7 +12,7 @@ class VocaDB:
         return requests.get(url, params=params, headers=headers)
 
     @staticmethod
-    def search_by_yt_id(yt_id: str) -> Song:
+    def search_by_yt_id(yt_id: str, lang="Default") -> Song:
         if len(yt_id) != 11:
             raise SongNotFoundError()
 
@@ -20,10 +20,12 @@ class VocaDB:
         params = {
             "pvService": "Youtube",
             "pvId": yt_id,
+            "lang": lang,
         }
 
         resp = VocaDB.__query(endpoint, params)
         data = resp.json()
+        print(resp.url)
 
         if resp.status_code != 200 or data is None:
             raise SongNotFoundError("Song not found.")
