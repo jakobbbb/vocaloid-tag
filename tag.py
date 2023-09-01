@@ -11,4 +11,5 @@ def tag_song(path, song: Song):
     audiofile.tag.title = song.title
     if song.year is not None:
         audiofile.tag.year = song.year
+    audiofile.tag.comments.set(f"https://vocadb.net/S/{song.vocadb_id}")
     audiofile.tag.save()
