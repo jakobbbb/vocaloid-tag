@@ -34,3 +34,19 @@ You can specify the langauge like this:
 ```
 
 By default, it uses whatever vocadb defaults to.
+
+### automatic download & tag
+
+Here's a little shell function:
+
+```sh
+function voca-dl() {
+    rm -fr /tmp/voca_dl;
+    mkdir /tmp/voca_dl;
+    cd /tmp/voca_dl;
+    yt-dlp -x $1;
+    for f in *opus do;
+        ffmpeg -i $f -ab 320k $f.mp3;
+    done;
+    /path/to/vocaloid-tag.py . /path/to/your/collection
+}
